@@ -48,22 +48,22 @@ let timingFunctions = {
                     } else {
                         let bounceNum = 1;
                         let halfOfRange = factor * Math.pow(elasticity, 1);
-                        let lowerlimit = factor;
-                        let middlePoint = lowerlimit + halfOfRange;
+                        let lowerLimit = factor;
+                        let middlePoint = lowerLimit + halfOfRange;
                         let upperLimit = factor + 2 * halfOfRange;
                         while (true) {
-                            if (lowerlimit < timeFraction && timeFraction <= upperLimit) {
+                            if (lowerLimit < timeFraction && timeFraction <= upperLimit) {
                                 break;
                             } else {
                                 bounceNum++;
                             }
                             halfOfRange = factor * Math.pow(elasticity, bounceNum);
-                            lowerlimit = upperLimit;
-                            middlePoint = lowerlimit + halfOfRange;
+                            lowerLimit = upperLimit;
+                            middlePoint = lowerLimit + halfOfRange;
                             upperLimit += 2 * halfOfRange;
                         }
                         if (timeFraction <= middlePoint) {
-                            let positionInRange = timeFraction - lowerlimit;
+                            let positionInRange = timeFraction - lowerLimit;
                             return 1 - Math.pow(elasticity, bounceNum) * (1 - (Math.pow(1 - positionInRange/halfOfRange, curveOrder)));
                         } else {
                             let positionInRange = timeFraction - middlePoint;

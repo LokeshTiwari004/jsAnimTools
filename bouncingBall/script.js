@@ -1,6 +1,4 @@
-let ball = document.getElementById('football');
-
-let _ball = {
+let animation = {
     animObject: document.getElementById('football'),
     draw: function(progress){
         this.animObject.style.top = `${40 * progress}vh`;
@@ -9,4 +7,4 @@ let _ball = {
     duration: 3000
 };
 
-ball.onclick = () => animate(_ball);
+animation.animObject.onclick = () => animate(animation);
