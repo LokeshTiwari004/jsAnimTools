@@ -10,9 +10,6 @@ function animate({duration, timingFunction, draw}) {
         if (timeFraction < 1) {
             requestAnimationFrame(animate);
         } 
-        // else {
-
-        // }
     }
 
     requestAnimationFrame(animate);
@@ -60,42 +57,20 @@ let timingFunctions = {
                     if (timeFraction <= this.factor){
                         return Math.pow(timeFraction/this.factor, curveOrder);
                     } else {
-<<<<<<< HEAD
-                        let bounceNum = 1;
-                        let halfOfRange = factor * Math.pow(elasticity, 1);
-                        let lowerLimit = factor;
-                        let middlePoint = lowerLimit + halfOfRange;
-                        let upperLimit = factor + 2 * halfOfRange;
-                        while (true) {
-                            if (lowerLimit < timeFraction && timeFraction <= upperLimit) {
-                                break;
-=======
                         if (this.lowerLimit < timeFraction && timeFraction <= this.upperLimit) {
                             if (timeFraction <= this.middlePoint) {
                                 let positionInRange = timeFraction - this.lowerLimit;
                                 return 1 - Math.pow(elasticity, this.bounceState) * (1 - (Math.pow(1 - positionInRange/this.halfOfRange, curveOrder)));
->>>>>>> roaster
                             } else {
                                 let positionInRange = timeFraction - this.middlePoint;
                                 return 1 + Math.pow(elasticity, this.bounceState) * ((Math.pow(positionInRange/this.halfOfRange, curveOrder)) - 1);
                             }
-<<<<<<< HEAD
-                            halfOfRange = factor * Math.pow(elasticity, bounceNum);
-                            lowerLimit = upperLimit;
-                            middlePoint = lowerLimit + halfOfRange;
-                            upperLimit += 2 * halfOfRange;
-                        }
-                        if (timeFraction <= middlePoint) {
-                            let positionInRange = timeFraction - lowerLimit;
-                            return 1 - Math.pow(elasticity, bounceNum) * (1 - (Math.pow(1 - positionInRange/halfOfRange, curveOrder)));
-=======
                         } else if (timeFraction >= 1) {
                             this.halfOfRange = factor * elasticity;
                             this.bounceState = 1;
                             this.lowerLimit = factor;
                             this.middlePoint = factor * ( 1 + elasticity );
                             this.upperLimit = factor * ( 1 + 2 * elasticity );
->>>>>>> roaster
                         } else {
                             this.halfOfRange *= elasticity;
                             this.bounceState++;
