@@ -9,7 +9,10 @@ function animate({duration, timingFunction, draw}) {
         draw(progress);
         if (timeFraction < 1) {
             requestAnimationFrame(animate);
-        }
+        } 
+        // else {
+
+        // }
     }
 
     requestAnimationFrame(animate);
@@ -65,6 +68,12 @@ let timingFunctions = {
                                 let positionInRange = timeFraction - this.middlePoint;
                                 return 1 + Math.pow(elasticity, this.bounceState) * ((Math.pow(positionInRange/this.halfOfRange, curveOrder)) - 1);
                             }
+                        } else if (timeFraction >= 1) {
+                            this.halfOfRange = factor * elasticity;
+                            this.bounceState = 1;
+                            this.lowerLimit = factor;
+                            this.middlePoint = factor * ( 1 + elasticity );
+                            this.upperLimit = factor * ( 1 + 2 * elasticity );
                         } else {
                             this.halfOfRange *= elasticity;
                             this.bounceState++;
